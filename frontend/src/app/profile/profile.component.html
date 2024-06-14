@@ -1,0 +1,64 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Profile</h2>
+  <div *ngIf="role === 'user'">
+    <h3>User Profile</h3>
+    <form [formGroup]="userForm">
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" id="username" class="form-control" formControlName="username" readonly>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" class="form-control" formControlName="email" [readonly]="!isEditing" [ngClass]="{'is-invalid': userForm.get('email')?.touched && userForm.get('email')?.invalid}">
+        <div *ngIf="userForm.get('email')?.touched && userForm.get('email')?.invalid" class="invalid-feedback">
+          Required field
+        </div>
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" id="name" class="form-control" formControlName="name" [readonly]="!isEditing">
+      </div>
+      <div class="mb-3">
+        <label for="surname" class="form-label">Surname</label>
+        <input type="text" id="surname" class="form-control" formControlName="surname" [readonly]="!isEditing">
+      </div>
+      </div>
+    </form>
+    <button *ngIf="!isEditing" class="btn btn-primary" (click)="toggleEdit()">Change Information</button>
+    <button *ngIf="isEditing" class="btn btn-success" (click)="saveChanges()">Save</button>
+  </div>
+  <div *ngIf="role === 'company'">
+    <h3>Company Profile</h3>
+    <form [formGroup]="companyForm">
+      <div class="mb-3">
+        <label for="companyName" class="form-label">Company Name</label>
+        <input type="text" id="companyName" class="form-control" formControlName="companyName" readonly>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" class="form-control" formControlName="email" [readonly]="!isEditing" [ngClass]="{'is-invalid': companyForm.get('email')?.touched && companyForm.get('email')?.invalid}">
+        <div *ngIf="companyForm.get('email')?.touched && companyForm.get('email')?.invalid" class="invalid-feedback">
+          Required field
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="addressArea" class="form-label">Area</label>
+        <input type="text" id="addressArea" class="form-control" formControlName="addressArea" [readonly]="!isEditing">
+      </div>
+      <div class="mb-3">
+        <label for="addressRoad" class="form-label">Road</label>
+        <input type="text" id="addressRoad" class="form-control" formControlName="addressRoad" [readonly]="!isEditing">
+      </div>
+      <div class="mb-3">
+        <label for="phoneType" class="form-label">Phone Type</label>
+        <input type="text" id="phoneType" class="form-control" formControlName="phoneType" [readonly]="!isEditing">
+      </div>
+      <div class="mb-3">
+        <label for="phoneNumber" class="form-label">Phone Number</label>
+        <input type="text" id="phoneNumber" class="form-control" formControlName="phoneNumber" [readonly]="!isEditing">
+      </div>
+    </form>
+    <button *ngIf="!isEditing" class="btn btn-primary" (click)="toggleEdit()">Change Information</button>
+    <button *ngIf="isEditing" class="btn btn-success" (click)="saveChanges()">Save</button>
+  </div>
+</div>

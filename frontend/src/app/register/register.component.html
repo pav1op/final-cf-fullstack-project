@@ -1,0 +1,80 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="w-50">
+    <h2 class="text-center mb-4">Register</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="role" class="form-label">Role</label>
+        <select id="role" class="form-select" formControlName="role" (change)="onRoleChange($event)">
+          <option value="user">User</option>
+          <option value="company">Company</option>
+        </select>
+      </div>
+      <div *ngIf="form.controls['role'].value === 'user'">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" id="username" class="form-control" formControlName="username">
+          <div *ngIf="form.controls['username'].invalid && form.controls['username'].touched" class="text-danger">
+            Username is required
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" id="name" class="form-control" formControlName="name">
+          <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched" class="text-danger">
+            Name is required
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="surname" class="form-label">Surname</label>
+          <input type="text" id="surname" class="form-control" formControlName="surname">
+          <div *ngIf="form.controls['surname'].invalid && form.controls['surname'].touched" class="text-danger">
+            Surname is required
+          </div>
+        </div>
+      </div>
+      <div *ngIf="form.controls['role'].value === 'company'">
+        <div class="mb-3">
+          <label for="companyName" class="form-label">Company Name</label>
+          <input type="text" id="companyName" class="form-control" formControlName="companyName">
+          <div *ngIf="form.controls['companyName'].invalid && form.controls['companyName'].touched" class="text-danger">
+            Company Name is required
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="area" class="form-label">Area</label>
+          <input type="text" id="area" class="form-control" formControlName="area">
+        </div>
+        <div class="mb-3">
+          <label for="road" class="form-label">Road</label>
+          <input type="text" id="road" class="form-control" formControlName="road">
+        </div>
+        <div class="mb-3">
+          <label for="phoneType" class="form-label">Phone Type</label>
+          <input type="text" id="phoneType" class="form-control" formControlName="phoneType">
+        </div>
+        <div class="mb-3">
+          <label for="phoneNumber" class="form-label">Phone Number</label>
+          <input type="text" id="phoneNumber" class="form-control" formControlName="phoneNumber">
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" class="form-control" formControlName="password">
+        <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched" class="text-danger">
+          Password is required and must be at least 6 characters
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" class="form-control" formControlName="email">
+        <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched" class="text-danger">
+          Email is required
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Register</button>
+    </form>
+    <div class="text-center mt-3">
+      Already registered? <a routerLink="/login">Login here!</a>
+    </div>
+  </div>
+</div>
